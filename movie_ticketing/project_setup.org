@@ -1,0 +1,17 @@
+* first create database volume
+#+begin_src bash
+docker volume create movies
+#+end_src
+* build docker image
+#+begin_src bash
+docker build -t movies .
+#+end_src
+* run docker container
+#+begin_src bash
+docker run  --rm -v movies:/var/lib/postgresql/data --name postgres movies
+docker run  --rm -p 5444:5432 -v movies:/var/lib/postgresql/data --name postgres movies
+#+end_src
+* connect to psql
+#+begin_src bash
+docker exec -it b0 psql -U miyagi -d movies
+#+end_src
